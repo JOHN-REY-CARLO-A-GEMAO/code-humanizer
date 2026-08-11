@@ -64,10 +64,17 @@ This matters because "natural" looks different for different people:
 
 ### Check for constraints that override "natural" before touching anything
 
-Two things can silently break the code you're trying to humanize. Check for both before
-you start stripping anything:
+Three things can silently break or introduce vulnerability to the code you're trying to humanize. Check for all of them before you start stripping anything:
 
-1. **Autograders and test suites.** If this code is going to run against hidden test
+1. **Security and Vulnerability checks.** Under no circumstances should you ever strip, bypass, or weaken critical security controls, defenses, or parameters in the name of "humanizing" the code or "removing over-defensive error handling/edge cases."
+   - **Do NOT remove or bypass input validation, sanitization, or encoding** (such as HTML entity encoding, path traversal guards, or shell execution argument sanitization).
+   - **Do NOT convert parameterized SQL queries back to raw string concatenation.** Parameterized queries are standard security controls, not "AI over-engineering," and must always be preserved to prevent SQL injection.
+   - **Do NOT bypass or strip authentication, authorization, token verification, or session checks.**
+   - **Do NOT strip secure cryptographic practices** (like secure hashing algorithms) or introduce insecure secrets/credentials.
+   - **Do NOT leak internal details or sensitive data in error messages** (e.g., exposing stack traces). Ensure that error handling, even when simplified, fails securely.
+   - If a piece of code is a security boundary or validation check, you may clean up comments or simplify formatting to make it read naturally, but the safety check itself **must remain fully intact and active**.
+
+2. **Autograders and test suites.** If this code is going to run against hidden test
    cases (Gradescope, HackerRank, a Canvas autograder, a CI pipeline, a `tests/` folder in
    the repo, or the person just says "may checker" / "may test cases 'to"), do NOT remove
    edge-case handling that the tests might actually rely on — null checks, empty-input
@@ -79,7 +86,7 @@ you start stripping anything:
    whether a check is load-bearing for grading, keep it and just simplify the phrasing
    rather than delete it outright.
 
-2. **Linters and formatters.** If the repo has a `.eslintrc`, `.prettierrc`,
+3. **Linters and formatters.** If the repo has a `.eslintrc`, `.prettierrc`,
    `pyproject.toml` with a `[tool.ruff]`/`[tool.black]` section, `.flake8`, or similar,
    check what rules it enforces (use Grep/Read/Glob to find and skim it) before
    introducing "natural" inconsistency. A deliberately lazy variable name or irregular

@@ -23,6 +23,10 @@ humanizer), but for code instead of prose.
 
 ## Safety checks built in
 
+- **Security-aware**: under no circumstances will the skill strip, bypass, or
+  weaken critical security controls, defenses, or parameters (e.g., input
+  validation/sanitization, parameterized queries, authentication/authorization,
+  or cryptography) in the name of humanization.
 - **Autograder-aware**: if the code will run against hidden test cases
   (Gradescope, Canvas, HackerRank, a `tests/` folder), it won't strip
   load-bearing edge-case handling — only simplifies the phrasing.
