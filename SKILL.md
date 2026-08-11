@@ -421,10 +421,12 @@ three config options when one would do, three-tier abstraction for a two-tier pr
 
 ## Output Format
 
-1. Brief note on the calibration assumption you made (skill level / context), if relevant.
-2. The rewritten code.
-3. A short list of what was changed and why (2-5 bullets), so the person can sanity-check
-   it still matches how they'd actually write it.
+For an excellent user experience (micro-UX) and maximum accessibility (such as for screen readers), present your response with clean visual hierarchy, semantic formatting, and concise content:
 
-Don't pad this with a "summary of improvements" essay — keep it tight, like a code review
-comment, not a report.
+1. **Calibration Check-In**: A brief, one-sentence note stating the calibration assumption (skill level & context) you've made (e.g. "Assuming student project context at Laguna University").
+2. **The Rewritten Code Block**: The actual refactored/humanized code enclosed in a clear, syntax-highlighted Markdown code block.
+3. **Change Summary (Accessible & Scannable)**: A clean bulleted list of exactly what changed and why (2-5 items max), structured with ARIA-like clarity:
+   - Identify the specific location (e.g., function name, class, or section) first.
+   - Follow with a plain-text description of the adjustment (e.g., "Removed repetitive line comments", "Simplified exception handling") rather than technical jargon.
+
+Keep the output concise, highly readable, and free of long essays or preambles. Let the code and brief explanation speak for itself.

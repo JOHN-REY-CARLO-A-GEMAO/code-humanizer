@@ -1,0 +1,3 @@
+## 2024-08-11 - Structured Output and Screen-Reader Friendly Explanations
+**Learning:** Developers and users with screen readers rely on well-structured, predictable text output formats. Bulleted lists with inline code fragments or plain text explanations are much easier to scan and comprehend than dense prose or un-annotated code changes. Incorporating specific location context (e.g. line numbers or function names) and using syntax highlighting in summary files dramatically improves the micro-UX and accessibility of AI code tools.
+**Action:** Always provide clear, bulleted summaries of what was changed and why. Pair the code changes with precise locations (such as file names and function boundaries) and keep explanations brief and non-technical where appropriate.
